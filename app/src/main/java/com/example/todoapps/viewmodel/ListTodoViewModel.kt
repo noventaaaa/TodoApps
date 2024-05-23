@@ -3,6 +3,7 @@ package com.example.todoapps.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.room.Room
 import com.example.todoapps.model.Todo
 import com.example.todoapps.model.TodoDatabase
 import com.example.todoapps.util.buildDb
@@ -46,4 +47,17 @@ class ListTodoViewModel(application: Application)
             todoLD.postValue(db.todoDao().selectAllTodo())
         }
     }
+
+    fun checkTask(todo:Todo) {
+        launch {
+            val db = Room.databaseBuilder(
+                getApplication(),
+                TodoDatabase::class.java, "newtododb").build()
+            db.todoDao().checkTask(todo.uuid)
+
+            todoLD.postValue(db.todoDao().selectAllTodo())
+        }
+    }
+
+
 }

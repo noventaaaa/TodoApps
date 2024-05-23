@@ -40,6 +40,8 @@ class TodoListFragment : Fragment() {
             Navigation.findNavController(it).navigate(action)
         }
         observeViewModel()
+
+
     }
 
     fun observeViewModel() {

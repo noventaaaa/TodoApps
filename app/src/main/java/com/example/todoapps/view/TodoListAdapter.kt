@@ -12,7 +12,6 @@ import com.example.todoapps.model.Todo
 class TodoListAdapter(val todoList:ArrayList<Todo>,
                       val adapterOnClick : (Todo) -> Unit)
     : RecyclerView.Adapter<TodoListAdapter.TodoViewHolder>() {
-
     class TodoViewHolder(var binding: TodoItemLayoutBinding):
         RecyclerView.ViewHolder(binding.root)
 
@@ -48,8 +47,13 @@ class TodoListAdapter(val todoList:ArrayList<Todo>,
             val action =
                 TodoListFragmentDirections.actionEditTodoFragment(todoList[position].uuid)
 
-            Navigation.findNavController(it).navigate(action)
-     }
+            Navigation.findNavController(it).navigate(action) }
+
+        holder.view.checkTask.setOnCheckedChangeListener{compoundButton, isChecked->
+            if (isChecked == true){
+                adapterOnClick(todoList[position])
+            }
+        }
 
     }
     }
