@@ -2,11 +2,15 @@ package com.example.todoapps.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.CheckBox
+import android.widget.ImageView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todoapps.databinding.TodoItemLayoutBinding
 import com.example.todoapps.model.Todo
 
-class TodoListAdapter(val todoList:ArrayList<Todo>, val adapterOnClick : (Todo) -> Unit)
+class TodoListAdapter(val todoList:ArrayList<Todo>,
+                      val adapterOnClick : (Todo) -> Unit)
     : RecyclerView.Adapter<TodoListAdapter.TodoViewHolder>() {
 
     class TodoViewHolder(var binding: TodoItemLayoutBinding):
@@ -45,7 +49,7 @@ class TodoListAdapter(val todoList:ArrayList<Todo>, val adapterOnClick : (Todo) 
                 TodoListFragmentDirections.actionEditTodoFragment(todoList[position].uuid)
 
             Navigation.findNavController(it).navigate(action)
-        }
+     }
 
     }
     }

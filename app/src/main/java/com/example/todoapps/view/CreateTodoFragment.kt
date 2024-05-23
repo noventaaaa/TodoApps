@@ -33,11 +33,12 @@ class CreateTodoFragment : Fragment() {
         viewModel =
             ViewModelProvider(this).get(DetailTodoViewModel::class.java)
 
-        binding.btnAdd.setOnClickListener {
-            var todo = Todo(
-                binding.txtTitle.text.toString(),
-                binding.txtNotes.text.toString()
-            )
+        btnAdd.setOnClickListener {
+            Var radio = view.findViewById<RadioButton>(radioGroupPriority.checkedRadioButtonId)
+
+            var todo = Todo(txtTitle.text.toString(),
+                txtNotes.text.toString(), radio.tag.toString().toInt())
+
             val list = listOf(todo)
             viewModel.addTodo(list)
             Toast.makeText(view.context, "Data added", Toast.LENGTH_LONG).show()
